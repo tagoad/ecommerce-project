@@ -1,11 +1,11 @@
 <form action="/books/addBook" method="POST">
     <label for="title">Enter Title</label>
-    <input type="text" id="title" name="title">
+    <input type="text" id="title" name="title" required>
     <label for="author">Enter Author</label>
-    <input type="text" id="author" name="author">
+    <input type="text" id="author" name="author" required>
     <label for="price">Enter Price</label>
-    <input type="number" id="price" name="price">
+    <input type="number" id="price" name="price" required>
     <label for="qty">Enter Qty</label>
-    <input type="number" id="qty" name="qty">
+    <input type="number" id="qty" name="qty" required>
     <button class="button" type="submit">Add to Inventory</button>
 </form>

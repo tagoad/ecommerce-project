@@ -79,11 +79,13 @@ table .table-headers{
 
 .alert {
   background-color: #b01302;
+  border: 1px solid #b01302;
   color: white;
 }
 
 .positive {
   background-color: green;
+  border: 1px solid green;
   color: white;
 }
 

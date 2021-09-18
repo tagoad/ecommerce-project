@@ -29,18 +29,18 @@ router.post('/addBook', (req, res, next) => {
   for (let book of books){
     if (book.title == req.body.title && book.author == req.body.author) {
       exists = true
-      book.qty += req.body.qty
+      book.qty += parseInt(req.body.qty)
     }
   }
 
   if (exists){
-    res.redirect('/books?type=alert&message=Book already in system, added to previous stock')
+    res.redirect('/books/admin?type=alert&message=Book already in system, added to previous stock')
   } else {
     books.push({
       title: req.body.title,
       author: req.body.author,
-      price: req.body.price,
-      qty: req.body.qty
+      price: parseFloat(req.body.price),
+      qty: parseInt(req.body.qty)
     })
   
     res.redirect('/books/admin')
