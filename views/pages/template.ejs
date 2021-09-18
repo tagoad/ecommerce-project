@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron minor text-center">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+    <% if (message != undefined) { %>
+      <div class='container tile alert'>
+        <p><%= message %></p>
+      </div>
+    <% } %>
+  </body>
+</html>

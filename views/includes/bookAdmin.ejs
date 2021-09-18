@@ -1,0 +1,28 @@
+<table>
+    <tr class="table-headers text-center">
+    <th>Title</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Qty</th>
+    <th>Actions</th>
+    </tr>
+    <% if (books.length > 0) { %>
+    <% for (let [i, value] of books.entries()) { %>
+        <tr>
+        <td><%= value.title %></td>
+        <td><%= value.author %></td>
+        <td><%= value.price %></td>
+        <td><%= value.qty %></td>
+        <td>
+            <a href='/books/removeBook/<%= i %>'>Delete</a>
+            <a href='/books/sellBook/<%= i %>'>Sell</a></td>
+        </tr>
+    <% } %>
+    <% }  else { %>
+        <tr>
+            <td>No Books to Display</td>
+            <td></td>
+            <td></td>
+        </tr>
+    <% } %>
+</table>

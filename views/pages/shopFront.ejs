@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron minortron text-center">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+    <% if (message != undefined) { %>
+      <div class='container tile text-center <%= type == 'positive' ? "positive" : "alert" %>'>
+        <p><%= message %></p>
+      </div>
+    <% } %>
+    <div class="container tile">
+      <% if (path == '/books') { %>
+        <% include ../includes/bookDisplay.ejs %>
+      <% } %>
+    </div>
+  </body>
+</html>

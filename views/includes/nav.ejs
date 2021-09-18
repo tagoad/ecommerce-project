@@ -1,0 +1,17 @@
+<nav class="navbar navbar-default navbar-static-top navbar-inverse">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li><a href="/" style="padding: 0 2rem; margin: 0"><img class="logo" src="/images/browncoat-logo.png" alt="BYU Idaho logo"></a></li>
+      <li class="<%= path === '/' ? 'active' : ''%>">
+        <a href="/">Home</a>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Books <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li class="<%= path === '/books' ? 'active' : ''%>"><a href="/books">Shop</a></li>
+          <li class="<%= path === '/books/admin' ? 'active' : ''%>"><a href="/books/admin">Admin</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

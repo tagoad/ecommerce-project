@@ -1,0 +1,136 @@
+
+:root {
+  --palette-yellow: #DFB25B;
+  --palette-red: #BF4A33;
+  --palette-rust: #7F4233;
+  --palette-brown: #47382C;
+}
+
+body {
+  background-color: var(--palette-brown);
+}
+
+
+form {
+  width: 75%;
+  margin: auto;
+  display: block;
+}
+
+button {
+  background-color: var(--palette-brown);
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 1px solid var(--palette-brown);
+  border-radius: 4px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+form label {
+  width: 100%;
+  padding: 0px 20px;
+  margin: 2px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+
+table {
+  background-color: var(--palette-rust);
+  color: white;
+  width: 75%;
+  margin: auto;
+  border: 1px solid var(--palette-brown);
+  border-radius: 4px;
+}
+
+th, td{
+  padding: 5px;
+}
+
+table .table-headers{
+  border: 1px solid var(--palette-brown);
+  border-radius: 4px;
+}
+
+.tile {
+  background-color: var(--palette-yellow);
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid var(--palette-yellow);
+  border-radius: 4px;
+}
+
+.alert {
+  background-color: #b01302;
+  color: white;
+}
+
+.positive {
+  background-color: green;
+  color: white;
+}
+
+.jumbotron {
+  background: var(--palette-rust);
+  color: white;
+  padding-bottom: 80px;
+}
+
+.minortron {
+  padding-bottom: 10px;
+}
+
+.jumbotron .btn-primary {
+  background: #845ac7;
+  border-color: #845ac7;
+}
+
+.jumbotron .btn-primary:hover {
+  background: #7646c1;
+}
+
+.jumbotron p {
+  color: #d9ccee;
+  max-width: 75%;
+  margin: 1em auto 2em;
+}
+
+.navbar + .jumbotron {
+  margin-top: -20px;
+}
+
+.jumbotron .lang-logo {
+  display: block;
+  background: #b01302;
+  border-radius: 50%;
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  border: 2px solid white;
+}
+.jumbotron .lang-logo img {
+  max-width: 100%;
+}
+
+.logo {
+  width: 5rem;
+  height: 5rem;
+}
