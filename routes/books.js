@@ -49,7 +49,7 @@ router.post('/addBook', (req, res, next) => {
 
 router.use('/removeBook/:bookId', (req, res, next) => {
   books.splice(req.params.bookId, 1)
-  res.redirect('/books/inventory?type=alert&message=Book Deleted')
+  res.redirect('/books/admin?type=alert&message=Book Deleted')
 })
 
 router.use('/sellBook/:bookId', (req, res, next) => {
