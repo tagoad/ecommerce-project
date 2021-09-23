@@ -2,74 +2,22 @@
 const express = require('express');
 const router = express.Router();
 
+const bookController = require('../controllers/bookStore');
+
 const books = []
 
-router.get('/', (req, res, next) => {
-  res.render('pages/shopFront', {
-    title: 'Best books this side of the \'Verse',
-    books: books,
-    message: req.query.message,
-    type: req.query.type,
-    path: '/books'
-  })
-})
+router.get('/', bookController.getShopFront)
 
-router.get('/admin', (req, res, next) => {
-    res.render('pages/inventory', {
-        title: 'Inventory Management System',
-        books: books,
-        message: req.query.message,
-        type: req.query.type,
-        path: '/books/admin'
-    })
-})
+router.get('/admin', bookController.getBookAdmin)
 
-router.post('/addBook', (req, res, next) => {
-  exists = false
-  for (let book of books){
-    if (book.title == req.body.title && book.author == req.body.author) {
-      exists = true
-      book.qty += parseInt(req.body.qty)
-    }
-  }
+router.get('/book/:bookId', bookController.getBookDetail)
 
-  if (exists){
-    res.redirect('/books/admin?type=alert&message=Book already in system, added to previous stock')
-  } else {
-    books.push({
-      title: req.body.title,
-      author: req.body.author,
-      price: parseFloat(req.body.price),
-      qty: parseInt(req.body.qty)
-    })
-  
-    res.redirect('/books/admin')
-  }
-})
+router.post('/addBook', bookController.postAddBook)
 
-router.use('/removeBook/:bookId', (req, res, next) => {
-  books.splice(req.params.bookId, 1)
-  res.redirect('/books/admin?type=alert&message=Book Deleted')
-})
+router.use('/removeBook/:bookId', bookController.postRemoveBook)
 
-router.use('/sellBook/:bookId', (req, res, next) => {
-    if(books[req.params.bookId].qty == 1){
-        books.splice(req.params.bookId, 1)
-        res.redirect('/books/admin?type=alert&message=Book is now soldout')
-    } else {
-        books[req.params.bookId].qty--
-        res.redirect('/books/admin?type=alert&message=Book Sold')
-    }
-})
+router.use('/sellBook/:bookId', bookController.postSellBook)
 
-router.use('/buyBook/:bookId', (req, res, next) => {
-    if(books[req.params.bookId].qty == 1){
-        books.splice(req.params.bookId, 1)
-        res.redirect('/books?type=positive&message=You bought our last copy, enjoy!')
-    } else {
-        books[req.params.bookId].qty--
-        res.redirect('/books?type=positive&message=Thank you for your purchase!')
-    }
-})
+router.use('/buyBook/:bookId', bookController.postBuyBook)
 
 module.exports = router;

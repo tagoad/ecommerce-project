@@ -10,6 +10,9 @@ body {
   background-color: var(--palette-brown);
 }
 
+hr {
+  border-color: var(--palette-brown);
+}
 
 form {
   width: 75%;
@@ -18,6 +21,21 @@ form {
 }
 
 button {
+  background-color: var(--palette-brown);
+  border: none;
+  color: white;
+  padding: 5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 1px solid var(--palette-brown);
+  border-radius: 4px;
+}
+
+.button {
   background-color: var(--palette-brown);
   border: none;
   color: white;
