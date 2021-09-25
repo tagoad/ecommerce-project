@@ -37,12 +37,8 @@ exports.deleteItem = (req, res, next) => {
 
 exports.increaseItem = (req, res, next) => {
     User.findById(req.user._id.toString()).then(user =>{
-        let message = req.user.increaseItem(req.params.productId)
-        if(message == null){
-            res.redirect('/cart')
-        } else {
-            res.redirect(`/cart?type=alert&message=Not enough inventory, sorry`)
-        }
+        req.user.increaseItem(req.params.productId)
+        res.redirect('/cart')
     })
 }
 

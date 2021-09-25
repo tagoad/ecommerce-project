@@ -58,19 +58,8 @@ userSchema.methods.increaseItem = async function(productId) {
     const index = this.cart.findIndex(item => {
         return item.productId.toString() === productId
     })
-    let message = null
     this.cart[index].cartQty += 1
-    message = await Book.findById(productId).then(item => {
-        console.log(this.cart[index].cartQty)
-        console.log(item.qty)
-        if(this.cart[index].cartQty <= item.qty){
-            this.save()
-        } else {
-            return 'Not enough inventory, sorry'
-        }
-    })
-    console.log(message)
-    return message
+    return this.save()
 }
 
 userSchema.methods.decreaseItem = function(productId) {
@@ -86,7 +75,5 @@ userSchema.methods.decreaseItem = function(productId) {
     this.save()
     return message
 }
-
-
 
 module.exports = mongoose.model('User', userSchema)
