@@ -9,13 +9,14 @@
     <% if (books.length > 0) { %>
     <% for (let [i, value] of books.entries()) { %>
         <tr>
-        <td><%= value.name %></td>
-        <td><%= value.author %></td>
-        <td><%= value.price %></td>
-        <td><%= value.qty %></td>
-        <td>
-            <a href='/books/removeBook/<%= i %>'>Delete</a>
-            <a href='/books/sellBook/<%= i %>'>Sell</a></td>
+            <td><%= value.name %></td>
+            <td><%= value.author %></td>
+            <td><%= value.price %></td>
+            <td><%= value.qty %></td>
+            <td>
+                <a href='/books/removeBook/<%= value._id.toString() %>'>Delete</a>
+                <a href='/books/admin/<%= value._id.toString() %>'>Edit</a>
+            </td>
         </tr>
     <% } %>
     <% }  else { %>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron minortron text-center">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+    <% if (message != undefined) { %>
+      <div class='container tile alert'>
+        <p><%= message %></p>
+      </div>
+    <% } %>
+    <% if (cart.length > 0) { %>
+      <% for (let [i, value] of cart.entries()) { %>
+        <div class='tile center cart'>
+          <div id='img'>
+            <img src="<%= value.productId.imgUrl %>" class="bookImg center" alt="<%= value.productId.name %>">
+          </div>
+          <h2 id='name'>
+            <%= value.productId.name %>
+          </h2>
+          <div id='desc'>
+            <%= value.productId.description %>
+          </div>
+          <div id='price'>
+            <strong>$<%= value.productId.price %></strong>
+          </div>
+          <div class='qty'>
+            <a class="button" href='/cart/decrease/<%= value.productId._id.toString() %>'>-</a>
+            <strong><%= value.cartQty %></strong>
+            <a class="button" href='/cart/increase/<%= value.productId._id.toString() %>'>+</a>
+          </div>
+          <div class='tile'>
+            <a class="button" href='/cart/remove/<%= value.productId._id.toString() %>'>Delete</a>
+          </div>
+        </div>
+      <% } %>
+    <% } else { %>
+      <div class='tile center cart'>
+        No Items in cart
+      </div>
+    <% } %>
+    <div class='tile center'>
+      <a class="button" href='/cart/checkout'>Checkout</a>
+      <a class="button" href='/cart/clearCart'>Clear Cart</a>
+    </div>
+  </body>
+</html>

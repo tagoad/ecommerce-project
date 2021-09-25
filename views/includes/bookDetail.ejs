@@ -1,3 +1,4 @@
+<img src="<%= book.imgUrl %>" class="bookImg center" alt="<%= book.name %>">
 <h2>
     Price: <%= book.price %>
 </h2>
@@ -11,6 +12,6 @@
      </p>
 </div>
 <div>
-    <a class="button" href='/books/buyBook/<%= id %>'>Buy Now!</a>
+    <a class="button" href='/cart/add/<%= book._id.toString() %>'>Buy Now!</a>
 </div>
 
