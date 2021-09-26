@@ -22,8 +22,6 @@ const MONGODB_URL = process.env.MONGODB_URL || "mongodb+srv://mainUser:TlI9TD0DV
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
   family: 4
 };
 
