@@ -1,27 +1,35 @@
-<table>
-    <tr class="table-headers text-center">
-    <th>Title</th>
-    <th>Author</th>
-    <th>Price</th>
-    <th>Qty</th>
-    <th>Actions</th>
-    </tr>
-    <% if (books.length > 0) { %>
-    <% for (let [i, value] of books.entries()) { %>
-        <tr>
-        <td><a href='/books/book/<%= value._id.toString() %>'><%= value.name %></a></td>
-        <td><%= value.author %></td>
-        <td><%= value.price %></td>
-        <td><%= value.qty %></td>
-        <td>
-            <a href='/cart/add/<%= value._id.toString() %>'>Buy</a></td>
-        </tr>
+<% if (books.length > 0) { %>
+    <% for (let [i, book] of books.entries()) { %>
+        <div class='subtile flex'>
+            <div class='left flex-child'>
+                <h2>
+                    <%= book.name %>
+                </h2>
+                <i>
+                    <%= book.fieldOne %>
+                </i>
+                <h3>
+                    <%= book.price %> each
+                </h3>
+                <p>
+                    <%= book.fieldTwo.slice(0, 300) %>... 
+                </p>
+                <div>
+                    <% if (isAuth == true) { %>
+                        <a class='button' href='/cart/add/<%= book._id.toString() %>'>Buy</a>
+                    <% } else { %>
+                        <a class='button' href='/auth/?message=Please Log in to add to cart'>Buy</a>
+                    <% } %>
+                    <a class='button' href='/books/book/<%= book._id.toString() %>'>Learn More!</a>
+                </div>
+            </div>
+            <div class='right flex-child'>
+                <img src="<%= book.imgUrl %>" class="bookImg center" alt="<%= book.name %>">
+            </div>
+        </div>
     <% } %>
-    <% }  else { %>
-        <tr>
-            <td>Oh No! Reavers have stolen all our books!</td>
-            <td></td>
-            <td></td>
-        </tr>
-    <% } %>
-</table>
+<% }  else { %>
+    <div class='subtile'>
+        No Products to display
+    </div>
+<% } %>

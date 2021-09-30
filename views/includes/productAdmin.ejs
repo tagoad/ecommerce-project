@@ -1,0 +1,28 @@
+<% if (products.length > 0) { %>
+    <% for (let [i, product] of products.entries()) { %>
+        <div class='subtile flex'>
+            <div class='left flex-child'>
+                <h2>
+                    <%= product.name %>
+                </h2>
+                <i>
+                    <%= product.fieldOne %>
+                </i>
+                <h3>
+                    <%= product.qty %> <%= product.type %>(s) at <%= product.price %> each
+                </h3>
+                <div>
+                    <a class='button' href='/books/removeBook/<%= product._id.toString() %>'>Delete</a>
+                    <a class='button' href='/books/admin/<%= product._id.toString() %>'>Edit</a>
+                </div>
+            </div>
+            <div class='right flex-child'>
+                <img src="<%= product.imgUrl %>" class="bookImg center admin" alt="<%= product.name %>">
+            </div>
+        </div>
+    <% } %>
+<% }  else { %>
+    <div class='subtile'>
+        No Products to display
+    </div>
+<% } %>

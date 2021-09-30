@@ -1,13 +1,22 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
-const Book = require('../models/book');
+const Product = require('../models/product');
+const { render } = require('ejs');
 
 const userSchema = new schema({
     name: {
         type: String,
         required: true
     },
+    level: {
+        type: Number,
+        required: true
+    },
     email: {
+        type: String,
+        required: true
+    },
+    password: {
         type: String,
         required: true
     },
@@ -54,7 +63,7 @@ userSchema.methods.deleteItem = function(productId) {
     return this.save()
 }
 
-userSchema.methods.increaseItem = async function(productId) {
+userSchema.methods.increaseItem = function(productId) {
     const index = this.cart.findIndex(item => {
         return item.productId.toString() === productId
     })

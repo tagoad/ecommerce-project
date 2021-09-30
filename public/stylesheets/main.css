@@ -57,8 +57,14 @@ button {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
-  border: 1px solid var(--palette-brown);
+  border: 3px solid var(--palette-brown);
   border-radius: 4px;
+}
+
+.button:hover {
+  background-color: var(--palette-rust);
+  text-decoration: none;
+  color: white;
 }
 
 form input {
@@ -104,6 +110,41 @@ table .table-headers{
   padding: 10px;
   border: 1px solid var(--palette-yellow);
   border-radius: 4px;
+}
+
+.subtile {
+  background-color: var(--palette-rust);
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid var(--palette-yellow);
+  border-radius: 4px;
+  display: flex;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+}
+
+.subtile .left {
+  width:70%;
+}
+
+.subtile .right {
+  width:20%;
+  margin: auto;
+  float: right;
+}
+
+.admin {
+  max-height: 200px;
 }
 
 .alert {
@@ -164,4 +205,20 @@ table .table-headers{
 .logo {
   width: 5rem;
   height: 5rem;
+}
+
+.login-form {
+  width: 20rem;
+  max-width: 90%;
+  margin: auto;
+  display: block;
+}
+
+.form-control {
+  padding: 100px;
+}
+
+.nohover:hover {
+  text-decoration: none;
+  color: inherit;
 }

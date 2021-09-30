@@ -1,16 +1,16 @@
 const mongoose = require('mongoose')
 const schema = mongoose.Schema
 
-const bookSchema = new schema({
+const productSchema = new schema({
   name: {
     type: String,
     required: true
   },
-  description: {
+  fieldOne: {
     type: String,
     required: true
   },
-  author: {
+  fieldTwo: {
     type: String,
     required: true
   },
@@ -25,7 +25,11 @@ const bookSchema = new schema({
   imgUrl: {
     type: String,
     required: true
+  },
+  type: {
+    type: String,
+    required: true
   }
 })
 
-module.exports = mongoose.model('Book', bookSchema)
+module.exports = mongoose.model('Product', productSchema)

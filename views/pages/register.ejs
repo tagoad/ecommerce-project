@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron minortron text-center">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+    <div class='tile center'>
+        <% if (message != undefined) { %>
+            <div class='container tile alert'>
+            <p><%= message %></p>
+            </div>
+        <% } %>
+        <form class="login-form" action="/auth/newUser" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" id="confirmPassword">
+            <button class="btn" type="submit">Login</button>
+            <input type="hidden" name="_csrf" value="<%= csrf %>">
+        </form>
+    </div>
+  </body>
+</html>

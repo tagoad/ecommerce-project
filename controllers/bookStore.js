@@ -1,12 +1,16 @@
 const { render } = require('ejs');
-const Book = require('../models/book');
+const Product = require('../models/product');
 
 exports.getShopFront = (req, res, next) => {
-    Book.find().then(books => {
+    Product.find().then(products => {
         res.render('pages/shopFront', {
             title: 'Best books this side of the \'Verse',
-            books: books,
+            books: products.filter(item => {
+                return item.type == 'Book'
+            }),
             message: req.query.message,
+            isAuth: req.session.isAuth,
+            isAdmin: req.session.isAdmin,
             type: req.query.type,
             path: '/books'
        })
@@ -14,18 +18,19 @@ exports.getShopFront = (req, res, next) => {
 }
 
 exports.getBookAdmin = (req, res, next) => {
-    Book.find().then(books => {
-        console.log(books.filter(item => {
-            return item._id.toString() == req.params.bookId
-        }))
+    Product.find().then(products => {
         res.render('pages/inventory', {
             title: 'Inventory Management System',
-            books: books,
-            book: books.filter(item => {
+            products: products.filter(item => {
+                return item.type == 'Book'
+            }),
+            book: products.filter(item => {
                 return item._id.toString() == req.params.bookId
             })[0],
             edit: typeof req.params.bookId == 'undefined' ? false : true,
             message: req.query.message,
+            isAuth: req.session.isAuth,
+            isAdmin: req.session.isAdmin,
             type: req.query.type,
             path: '/books/admin'
         })
@@ -33,12 +38,14 @@ exports.getBookAdmin = (req, res, next) => {
 }
 
 exports.getBookDetail = (req, res, next) => {
-    Book.findById(req.params.bookId).then(book => {
+    Product.findById(req.params.bookId).then(book => {
         res.render('pages/shopDetail', {
-            title: `${book.name} by ${book.author}`,
+            title: `${book.name} by ${book.fieldOne}`,
             book: book,
             id: req.params.bookId,
             message: req.query.message,
+            isAuth: req.session.isAuth,
+            isAdmin: req.session.isAdmin,
             type: req.query.type,
             path: '/books'
         })
@@ -46,13 +53,14 @@ exports.getBookDetail = (req, res, next) => {
 }
 
 exports.postAddBook = (req, res, next) => {
-    const newBook = new Book({
+    const newBook = new Product({
         name: req.body.name,
-        description: req.body.description,
-        author: req.body.author,
+        fieldOne: req.body.author,
+        fieldTwo: req.body.description,
         price: req.body.price,
         qty: req.body.qty,
-        imgUrl: req.body.url != '' ? req.body.url : '/images/no-image.jpg'
+        imgUrl: req.body.url != '' ? req.body.url : '/images/no-image.jpg',
+        type: 'Book'
     })
 
     newBook.save().then(result => {
@@ -64,20 +72,20 @@ exports.postAddBook = (req, res, next) => {
 }
 
 exports.postUpdateBook = (req, res, next) => {
-    Book.findByIdAndUpdate(req.params.bookId, {
+    Product.findByIdAndUpdate(req.params.bookId, {
         name: req.body.name,
         description: req.body.description,
         author: req.body.author,
         price: req.body.price,
         qty: req.body.qty,
-        imgUrl: req.body.url != '' ? req.body.url : '/images/no-image.jpg'
+        imgUrl: req.body.url != '' ? req.body.url : '/images/no-image.jpg',
     }).then(result => {
         res.redirect('/books/admin?type=positive&message=Book Updated')
     })
 }
 
 exports.postRemoveBook = (req, res, next) => {
-    Book.findByIdAndRemove(req.params.bookId).then(books => {
+    Product.findByIdAndRemove(req.params.bookId).then(books => {
         res.redirect('/books/admin?type=alert&message=Book Deleted')
     })
 }

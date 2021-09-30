@@ -1,19 +1,21 @@
 
 const express = require('express');
 const router = express.Router();
+const isAuth = require('../middleware/is-auth')
+const isAdmin = require('../middleware/is-admin')
 
 const bookController = require('../controllers/bookStore');
 
 router.get('/', bookController.getShopFront)
 
-router.get('/admin/:bookId?', bookController.getBookAdmin)
+router.get('/admin/:bookId?', isAuth, isAdmin, bookController.getBookAdmin)
 
 router.get('/book/:bookId', bookController.getBookDetail)
 
-router.post('/addBook', bookController.postAddBook)
+router.post('/addBook', isAuth, isAdmin, bookController.postAddBook)
 
-router.post('/updateBook/:bookId', bookController.postUpdateBook)
+router.post('/updateBook/:bookId', isAuth, isAdmin, bookController.postUpdateBook)
 
-router.use('/removeBook/:bookId', bookController.postRemoveBook)
+router.use('/removeBook/:bookId', isAuth, isAdmin, bookController.postRemoveBook)
 
 module.exports = router;

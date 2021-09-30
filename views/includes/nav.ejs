@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-  <div class="container">
+  <div class="container" style='width: 60%; float: left; margin-left: 100px;'>
     <ul class="nav navbar-nav">
       <li><a href="/" style="padding: 0 2rem; margin: 0"><img class="logo" src="/images/browncoat-logo.png" alt="BYU Idaho logo"></a></li>
       <li class="<%= path === '/' ? 'active' : ''%>">
@@ -9,12 +9,19 @@
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Books <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li class="<%= path === '/books' ? 'active' : ''%>"><a href="/books">Shop</a></li>
-          <li class="<%= path === '/books/admin' ? 'active' : ''%>"><a href="/books/admin">Admin</a></li>
+          <% if (isAuth == true && isAdmin == true) { %>
+            <li class="<%= path === '/books/admin' ? 'active' : ''%>"><a href="/books/admin">Admin</a></li>
+          <% } %>
         </ul>
       </li>
-      <li class="<%= path === '/cart' ? 'active' : ''%>">
-        <a href="/cart">Cart</a>
-      </li>
+      <% if (isAuth == true) { %>
+        <li class="<%= path === '/cart' ? 'active' : ''%>">
+          <a href="/cart">Cart</a>
+        </li>
+      <% } %>
     </ul>
+  </div>
+  <div style='float: right; width: 20%; margin-top: 5px;'>
+    <a href="<%= isAuth == true ? '/auth/logout' : '/auth/' %>" class='button'><%= isAuth == true ? 'Logout' : 'Login' %></a>
   </div>
 </nav>

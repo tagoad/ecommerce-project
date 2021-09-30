@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../includes/header.ejs %>
+  </head>
+
+  <body>
+    <% include ../includes/nav.ejs %>
+    <div class="jumbotron minortron text-center">
+      <h1>
+        <%= title %>
+      </h1>
+    </div>
+    <div class='tile center'>
+        <% if (message != undefined) { %>
+            <div class='container tile alert'>
+              <p><%= message %></p>
+            </div>
+          <% } %>
+          <form class="login-form" action="/auth/login" method="POST">
+            <label for="email">E-Mail</label>
+            <input type="email" name="email" id="email">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <div class='flex'>
+                <button class="button center flex-child" type="submit">Login</button>
+                <a href='/auth/register' class='button center flex-child'>Register</a>
+            </div>
+            <input type="hidden" name="_csrf" value="<%= csrf %>">
+          </form>
+    </div>
+  </body>
+</html>

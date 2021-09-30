@@ -17,30 +17,36 @@
       </div>
     <% } %>
     <% if (cart.length > 0) { %>
+      <div class='tile center cart'>
       <% for (let [i, value] of cart.entries()) { %>
-        <div class='tile center cart'>
-          <div id='img'>
-            <img src="<%= value.productId.imgUrl %>" class="bookImg center" alt="<%= value.productId.name %>">
+          <div class='subtile flex'>
+            <div class='left flex-child'>
+                <h2>
+                    <%= value.productId.name %>
+                </h2>
+                <i>
+                    <%= value.productId.fieldOne %>
+                </i>
+                <div id='price'>
+                  <strong>$<%= value.productId.price %></strong>
+                </div>
+                <div id='interactions' class='flex'>
+                  <div id='qty ' class='flex-child'>
+                    <a class="button" href='/cart/decrease/<%= value.productId._id.toString() %>'>-</a>
+                    <strong><%= value.cartQty %></strong>
+                    <a class="button" href='/cart/increase/<%= value.productId._id.toString() %>'>+</a>
+                  </div>
+                  <div class='flex-child'>
+                    <a class="button" href='/cart/remove/<%= value.productId._id.toString() %>'>Delete</a>
+                  </div>
+                </div>
+            </div>
+            <div class='right flex-child'>
+                <img src="<%= value.productId.imgUrl %>" class="bookImg center admin" alt="<%= value.productId.name %>">
+            </div>
           </div>
-          <h2 id='name'>
-            <%= value.productId.name %>
-          </h2>
-          <div id='desc'>
-            <%= value.productId.description %>
-          </div>
-          <div id='price'>
-            <strong>$<%= value.productId.price %></strong>
-          </div>
-          <div class='qty'>
-            <a class="button" href='/cart/decrease/<%= value.productId._id.toString() %>'>-</a>
-            <strong><%= value.cartQty %></strong>
-            <a class="button" href='/cart/increase/<%= value.productId._id.toString() %>'>+</a>
-          </div>
-          <div class='tile'>
-            <a class="button" href='/cart/remove/<%= value.productId._id.toString() %>'>Delete</a>
-          </div>
-        </div>
       <% } %>
+    </div>
     <% } else { %>
       <div class='tile center cart'>
         No Items in cart
