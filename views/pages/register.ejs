@@ -19,9 +19,9 @@
         <% } %>
         <form class="login-form" action="/auth/newUser" method="POST">
             <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" value="<%= oldInputs.name %>">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" value="<%=oldInputs.email %>">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
             <label for="confirmPassword">Confirm Password</label>

@@ -15,11 +15,12 @@
         <% if (message != undefined) { %>
             <div class='container tile alert'>
               <p><%= message %></p>
+              <a href='/auth/reset'>Click here to reset password</a>
             </div>
           <% } %>
           <form class="login-form" action="/auth/login" method="POST">
             <label for="email">E-Mail</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" value="<%= oldInputs.email %>">
             <label for="password">Password</label>
             <input type="password" name="password" id="password">
             <div class='flex'>

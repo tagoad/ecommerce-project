@@ -29,6 +29,10 @@ const productSchema = new schema({
   type: {
     type: String,
     required: true
+  },
+  createdBy: {
+    type: String,
+    required: true
   }
 })
 
